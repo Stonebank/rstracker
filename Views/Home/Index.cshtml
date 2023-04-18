@@ -55,6 +55,7 @@
                 success: function (response) {
                     $('body').html(response);
                     history.pushState(null, null, "/highscore/rs3/profile?username=" + input);
+                    window.location.reload(true);
                 },
                 error: function (response) {
                     alert(response.responseText);
