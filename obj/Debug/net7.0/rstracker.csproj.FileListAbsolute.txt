@@ -29,3 +29,5 @@ C:\Users\HK\Desktop\rstracker\obj\Debug\net7.0\refint\rstracker.dll
 C:\Users\HK\Desktop\rstracker\obj\Debug\net7.0\rstracker.pdb
 C:\Users\HK\Desktop\rstracker\obj\Debug\net7.0\rstracker.genruntimeconfig.cache
 C:\Users\HK\Desktop\rstracker\obj\Debug\net7.0\ref\rstracker.dll
+C:\Users\HK\Desktop\rstracker\bin\Debug\net7.0\package-lock.json
+C:\Users\HK\Desktop\rstracker\bin\Debug\net7.0\package.json

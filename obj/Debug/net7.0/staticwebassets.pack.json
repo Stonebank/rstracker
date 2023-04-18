@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\rstracker.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\css\\app.css",
+      "PackagePath": "staticwebassets\\css\\app.css"
+    },
+    {
       "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

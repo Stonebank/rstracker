@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "kKQRkRMUqzMtZTOND100TnbWwUTnqwBIyyKRtmg07/Q=",
+  "Hash": "ALDmg/0Gy4y5jD/TC/VIh01gSnBB4sYr0xlOeamhSQw=",
   "Source": "rstracker",
   "BasePath": "_content/rstracker",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\HK\\Desktop\\rstracker\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\rstracker.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\css\\app.css",
+      "SourceId": "rstracker",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\",
+      "BasePath": "_content/rstracker",
+      "RelativePath": "css/app.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\app.css"
     },
     {
       "Identity": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\css\\site.css",
