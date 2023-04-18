@@ -9,12 +9,156 @@
       "PackagePath": "staticwebassets\\css\\app.css"
     },
     {
+      "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\css\\index.css",
+      "PackagePath": "staticwebassets\\css\\index.css"
+    },
+    {
+      "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\css\\profile.css",
+      "PackagePath": "staticwebassets\\css\\profile.css"
+    },
+    {
       "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
-      "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\favicon.ico",
-      "PackagePath": "staticwebassets\\favicon.ico"
+      "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\img\\osrs.png",
+      "PackagePath": "staticwebassets\\img\\osrs.png"
+    },
+    {
+      "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\img\\rs3.png",
+      "PackagePath": "staticwebassets\\img\\rs3.png"
+    },
+    {
+      "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\img\\skill_icons\\agility.png",
+      "PackagePath": "staticwebassets\\img\\skill_icons\\agility.png"
+    },
+    {
+      "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\img\\skill_icons\\archaeology.png",
+      "PackagePath": "staticwebassets\\img\\skill_icons\\archaeology.png"
+    },
+    {
+      "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\img\\skill_icons\\attack.png",
+      "PackagePath": "staticwebassets\\img\\skill_icons\\attack.png"
+    },
+    {
+      "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\img\\skill_icons\\construction.png",
+      "PackagePath": "staticwebassets\\img\\skill_icons\\construction.png"
+    },
+    {
+      "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\img\\skill_icons\\cooking.png",
+      "PackagePath": "staticwebassets\\img\\skill_icons\\cooking.png"
+    },
+    {
+      "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\img\\skill_icons\\crafting.png",
+      "PackagePath": "staticwebassets\\img\\skill_icons\\crafting.png"
+    },
+    {
+      "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\img\\skill_icons\\defence.png",
+      "PackagePath": "staticwebassets\\img\\skill_icons\\defence.png"
+    },
+    {
+      "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\img\\skill_icons\\divination.png",
+      "PackagePath": "staticwebassets\\img\\skill_icons\\divination.png"
+    },
+    {
+      "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\img\\skill_icons\\dungeoneering.png",
+      "PackagePath": "staticwebassets\\img\\skill_icons\\dungeoneering.png"
+    },
+    {
+      "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\img\\skill_icons\\farming.png",
+      "PackagePath": "staticwebassets\\img\\skill_icons\\farming.png"
+    },
+    {
+      "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\img\\skill_icons\\firemaking.png",
+      "PackagePath": "staticwebassets\\img\\skill_icons\\firemaking.png"
+    },
+    {
+      "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\img\\skill_icons\\fishing.png",
+      "PackagePath": "staticwebassets\\img\\skill_icons\\fishing.png"
+    },
+    {
+      "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\img\\skill_icons\\fletching.png",
+      "PackagePath": "staticwebassets\\img\\skill_icons\\fletching.png"
+    },
+    {
+      "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\img\\skill_icons\\herblore.png",
+      "PackagePath": "staticwebassets\\img\\skill_icons\\herblore.png"
+    },
+    {
+      "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\img\\skill_icons\\hitpoints.png",
+      "PackagePath": "staticwebassets\\img\\skill_icons\\hitpoints.png"
+    },
+    {
+      "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\img\\skill_icons\\hunter.png",
+      "PackagePath": "staticwebassets\\img\\skill_icons\\hunter.png"
+    },
+    {
+      "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\img\\skill_icons\\invention.png",
+      "PackagePath": "staticwebassets\\img\\skill_icons\\invention.png"
+    },
+    {
+      "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\img\\skill_icons\\magic.png",
+      "PackagePath": "staticwebassets\\img\\skill_icons\\magic.png"
+    },
+    {
+      "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\img\\skill_icons\\mining.png",
+      "PackagePath": "staticwebassets\\img\\skill_icons\\mining.png"
+    },
+    {
+      "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\img\\skill_icons\\prayer.png",
+      "PackagePath": "staticwebassets\\img\\skill_icons\\prayer.png"
+    },
+    {
+      "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\img\\skill_icons\\ranged.png",
+      "PackagePath": "staticwebassets\\img\\skill_icons\\ranged.png"
+    },
+    {
+      "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\img\\skill_icons\\runecrafting.png",
+      "PackagePath": "staticwebassets\\img\\skill_icons\\runecrafting.png"
+    },
+    {
+      "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\img\\skill_icons\\slayer.png",
+      "PackagePath": "staticwebassets\\img\\skill_icons\\slayer.png"
+    },
+    {
+      "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\img\\skill_icons\\smithing.png",
+      "PackagePath": "staticwebassets\\img\\skill_icons\\smithing.png"
+    },
+    {
+      "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\img\\skill_icons\\strength.png",
+      "PackagePath": "staticwebassets\\img\\skill_icons\\strength.png"
+    },
+    {
+      "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\img\\skill_icons\\summoning.png",
+      "PackagePath": "staticwebassets\\img\\skill_icons\\summoning.png"
+    },
+    {
+      "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\img\\skill_icons\\thieving.png",
+      "PackagePath": "staticwebassets\\img\\skill_icons\\thieving.png"
+    },
+    {
+      "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\img\\skill_icons\\total.png",
+      "PackagePath": "staticwebassets\\img\\skill_icons\\total.png"
+    },
+    {
+      "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\img\\skill_icons\\woodcutting.png",
+      "PackagePath": "staticwebassets\\img\\skill_icons\\woodcutting.png"
+    },
+    {
+      "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\img\\website\\background.png",
+      "PackagePath": "staticwebassets\\img\\website\\background.png"
+    },
+    {
+      "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\img\\website\\osrs_background.png",
+      "PackagePath": "staticwebassets\\img\\website\\osrs_background.png"
+    },
+    {
+      "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\img\\website\\profile_background.png",
+      "PackagePath": "staticwebassets\\img\\website\\profile_background.png"
+    },
+    {
+      "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\img\\website\\rs3_search.png",
+      "PackagePath": "staticwebassets\\img\\website\\rs3_search.png"
     },
     {
       "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\js\\site.js",
@@ -247,6 +391,10 @@
     {
       "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "C:\\Users\\HK\\Desktop\\rstracker\\wwwroot\\loading.svg",
+      "PackagePath": "staticwebassets\\loading.svg"
     },
     {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.rstracker.props",
