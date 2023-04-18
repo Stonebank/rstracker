@@ -180,12 +180,12 @@
         </div>
     }
     <script>
-        $(document).ready(function () {
+        window.onload = function () {
             setTimeout(function () {
                 var notification = document.querySelector('.notification');
                 notification.classList.add('hide');
             }, 3000);
-        });
+        };
     </script>
 </body>
 </html>
