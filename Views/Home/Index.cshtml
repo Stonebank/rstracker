@@ -43,6 +43,11 @@
 
             var input = document.querySelector(".searchbar__text input").value;
 
+            if (input.trim().length == 0) {
+                alert("Please enter a username to search for.");
+                return;
+            }
+
             $.ajax({
                 type: 'POST',
                 url: '/rs3lookup/profile/',
