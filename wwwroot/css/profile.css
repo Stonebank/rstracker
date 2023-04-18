@@ -35,6 +35,17 @@ body {
     margin-top: 15px;
 }
 
+.avatar__username > .avatar__clan__name {
+    all: unset;
+    font-size: 1.5rem;
+    background: -webkit-linear-gradient(#fff, #828282);
+    color: #fff;
+    text-shadow: none;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: none;
+}
+
 .avatar__rank {
     font-family: cinzel;
     font-size: 3.5rem;
@@ -75,10 +86,10 @@ body {
 }
 
 .fade-out {
-  opacity: 1;
-  transition: opacity 0.5s ease-in-out;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
 }
 
 .fade-out.hide {
-  opacity: 0;
+    opacity: 0;
 }
