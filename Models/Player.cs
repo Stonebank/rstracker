@@ -1,4 +1,5 @@
 ﻿using rstracker.Enums;
+using rstracker.Utility;
 
 namespace rstracker.Models
 {
@@ -35,7 +36,7 @@ namespace rstracker.Models
 
         public Player(string username)
         {
-            Username = username;
+            Username = Utils.Capitalize(username);
             SkillData = new List<string>();
             LastSkillDataUpdate = new List<string>();
             LastUpdate = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() + Constants.GLOBAL_TRACKING_DELAY;
