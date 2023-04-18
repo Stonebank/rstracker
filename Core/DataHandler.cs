@@ -31,7 +31,7 @@ namespace rstracker.Core
 
         public static void LoadPlayer(string username)
         {
-            string dataPath = Constants.DATA_PATH + username + ".json";
+            string dataPath = Constants.DATA_PATH + Utils.Capitalize(username) + ".json";
             if (string.IsNullOrEmpty(dataPath) || !File.Exists(dataPath))
                 throw new ArgumentNullException("Player not found.");
 
@@ -56,7 +56,7 @@ namespace rstracker.Core
         public static Player GetPlayer(string username)
         {
             foreach (var player in Constants.PLAYERS)
-                if (player.Username == username)
+                if (player.Username == Utils.Capitalize(username))
                     return player;
             return new Player(username);
         }
