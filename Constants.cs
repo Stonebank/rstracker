@@ -25,5 +25,31 @@ namespace rstracker
 
         public static readonly long GLOBAL_TRACKING_DELAY = 60 * 1000;
 
+        /**
+         * 
+         * API ENDPOINTS
+         * 
+         * Highscore (lite) endpoint
+         * 
+         * */
+
+        public static string GetHighscoreEndPoint(string username)
+        {
+            return $"https://secure.runescape.com/m=hiscore/index_lite.ws?player={username}";
+        }
+
+        /**
+         * 
+         * API ENDPOINTS
+         * 
+         * Clan data endpoint
+         * 
+         * */
+
+        public static string GetClanDataEndPoint(string username)
+        {
+            return $"https://secure.runescape.com/m=website-data/playerDetails.ws?names=%5B%22{username}%22%5D&callback=jQuery000000000000000_0000000000&_=0";
+        }
+
     }
 }
