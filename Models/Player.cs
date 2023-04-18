@@ -27,6 +27,10 @@ namespace rstracker.Models
 
         public string Username { get; set; }
 
+        /* Clan will store the player's clan. This is used to display the player's clan on the frontend. */
+
+        public ClanMember ClanMember { get; set; }
+
         /* SearchCount is a metric that will store the amount of times that the player has been searched for. */
 
         public int SearchCount { get; set; }
