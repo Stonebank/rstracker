@@ -1,4 +1,8 @@
+using rstracker.Core;
+
 var builder = WebApplication.CreateBuilder(args);
+
+DataHandler.LoadAllPlayers();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
