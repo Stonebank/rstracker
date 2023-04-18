@@ -7,7 +7,6 @@ namespace rstracker.Controllers
     public class HighscoreController : Controller
     {
 
-        [HttpPost]
         public IActionResult RS3(string username)
         {
 
@@ -25,7 +24,7 @@ namespace rstracker.Controllers
             if (DateTime.Today.Date > player.LastResetDay.Date)
             {
                 player.LastResetDay = DateTime.Today;
-                // clear daily tracking list
+                player.DailyTrackingData.Clear();
             }
 
             if (!Constants.PLAYERS.Contains(player))
@@ -35,6 +34,9 @@ namespace rstracker.Controllers
 
             if (player.LastSkillDataUpdate.Count > 0)
                 player.LastSkillDataUpdate.Clear();
+
+            player.LastSkillDataUpdate = new List<string>(player.SkillData);
+            player.SkillData.Clear();
 
             string url = $"https://secure.runescape.com/m=hiscore/index_lite.ws?player={username}";
 
@@ -56,12 +58,14 @@ namespace rstracker.Controllers
                 }
             }
 
+            player.AppendDailyXp();
             player.LastUpdate = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() + 60000;
 
             DataHandler.Save(player);
 
             return View("rs3/profile", player);
         }
+
 
     }
 }
