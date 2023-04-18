@@ -27,7 +27,7 @@
                     <div class="avatar__picture">
                         <img src="https://secure.runescape.com/m=avatar-rs/{@Model.Username}/chat.png" />
                     </div>
-                    <div class="avatar__username">@Model.Username</div>
+                    <div class="avatar__username">@Model.Username <span class="avatar__clan__name">@(Model.ClanMember.Clan != null ? $"(member of {Model.ClanMember.Clan})" : "")</span></div>
                     <div class="avatar__rank">Rank @Model.GetRank()</div>
                 </div>
                 <div class="avatar__summary_stats">
