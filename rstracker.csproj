@@ -24,4 +24,8 @@
     <Exec Command="npm run release" Condition=" '$(Configuration)' == 'Release' " />
   </Target>
 
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
 </Project>
