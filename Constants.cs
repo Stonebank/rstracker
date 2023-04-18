@@ -1,7 +1,21 @@
-﻿namespace rstracker
+﻿using rstracker.Models;
+
+namespace rstracker
 {
     public class Constants
     {
+
+        /*
+         * 
+         * DATA_PATH is the path to the data folder. This solution is temporarily and will store player data locally until a database is implemented.
+         * 
+         * PLAYERS is also a temporarily solution and will store player data that is initialized until a database is implemented.
+         * 
+         */
+
+        public static string DATA_PATH = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "rsxptracker\\");
+
+        public static List<Player> PLAYERS = new List<Player>();
 
         /* 
          * GLOBAL_TRACKING_DELAY will store the time in milliseconds that a player can be tracked.
