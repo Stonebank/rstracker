@@ -1,5 +1,6 @@
 ﻿using rstracker.Enums;
 using rstracker.Utility;
+using System.Numerics;
 
 namespace rstracker.Models
 {
@@ -9,6 +10,10 @@ namespace rstracker.Models
         /* Id will be the unique identifier of the player. This is generated so it is easier to track the player, even if they were to change usernames. */
 
         public string Id = Guid.NewGuid().ToString();
+
+        /* Creation date will store the date where the player was created. This is used to track the player's age in the database. */
+
+        public DateTime CreationDate = DateTime.Now;
 
         /* LastResetDay will store the day where the player was last reset. This variable is used to track the player's daily experience gained */
 
@@ -34,11 +39,16 @@ namespace rstracker.Models
 
         public List<string> LastSkillDataUpdate { get; set; }
 
+        /* DailyTrackingData will store the skill data until reset. This is used to display XP, levels and such gained on a daily basis. */
+
+        public List<string> DailyTrackingData { get; set; }
+
         public Player(string username)
         {
             Username = Utils.Capitalize(username);
             SkillData = new List<string>();
             LastSkillDataUpdate = new List<string>();
+            DailyTrackingData = new List<string>();
             LastUpdate = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() + Constants.GLOBAL_TRACKING_DELAY;
             LastResetDay = DateTime.Today;
         }
@@ -96,6 +106,38 @@ namespace rstracker.Models
             long oldXp = GetSkillExperience(LastSkillDataUpdate, skill);
             long newXp = GetSkillExperience(SkillData, skill);
             return newXp - oldXp;
+        }
+
+        /* GetDailyXP returns the XP gained on a daily basis. */
+
+        public long GetDailyXP(Skill skill)
+        {
+            if (SearchCount == 1 || DailyTrackingData.Count == 0)
+                return 0;
+            return long.Parse(DailyTrackingData[(int)skill]);
+        }
+
+        public void AppendDailyXp()
+        {
+            if (SkillData.Count == 0 || LastSkillDataUpdate.Count == 0)
+                return;
+
+            if (DailyTrackingData.Count == 0)
+            {
+                for (int i = 0; i < SkillData.Count; i++)
+                {
+                    DailyTrackingData.Add("0");
+                }
+            }
+
+            foreach (var skill in Enum.GetValues(typeof(Skill)))
+            {
+                long difference = GetXPDifference((Skill)skill);
+                if (difference <= 0)
+                    continue;
+                DailyTrackingData[(int) skill] = (difference + long.Parse(DailyTrackingData[(int)skill])).ToString();
+            }
+
         }
 
     }
