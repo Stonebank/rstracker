@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\rstracker.props" />
+</Project>
