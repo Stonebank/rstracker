@@ -1,0 +1,79 @@
+﻿
+html, body {
+    height: 90%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.search__header {
+    color: #E1BB34;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 3rem;
+    text-transform: uppercase;
+}
+
+.search__subheader {
+    color: white;
+    text-align: center;
+    font-size: 13px;
+    margin-top: 5px;
+    max-width: 700px;
+}
+
+
+.searchbar__main {
+    display: flex;
+    margin-top: 40px;
+}
+
+.searchbar__container {
+    display: flex;
+    flex-direction: row;
+}
+
+.searchbar {
+    display: flex;
+    flex-direction: row;
+}
+
+.searchbar__text input {
+    width: 500px;
+    color: #aed0e0;
+    background: #010709;
+    border-radius: 20px;
+    border: 1px solid #355563;
+    font-size: 1.55em;
+    padding: 9px 12px 8px;
+}
+
+.searchbar__button {
+    background: url(../img/website/rs3_search.png) no-repeat 10px 10px;
+    border: none;
+    cursor: pointer;
+    height: 54px;
+    width: 56px;
+    text-indent: -9999px;
+    margin-left: 20px;
+}
+
+.searchbar__button:hover {
+    filter: brightness(1.3);
+}

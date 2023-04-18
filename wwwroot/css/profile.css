@@ -1,0 +1,84 @@
+﻿
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.center {
+    display: flex;
+    min-height: 100%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+.avatar__header__information {
+    display: flex;
+    margin-top: 20px;
+    gap: 10px;
+    border-bottom: 1px solid gray;
+}
+
+.avatar__username {
+    font-family: cinzel;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #e1bb34;
+    text-transform: uppercase;
+    margin-top: 15px;
+}
+
+.avatar__rank {
+    font-family: cinzel;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #e1bb34;
+    text-transform: uppercase;
+    margin-left: auto;
+}
+
+.avatar__picture {
+    width: 80px;
+    height: 80px;
+    margin: 6px 5px 6px 0;
+    background: linear-gradient(#010b10,#02131a);
+    border: 1px solid #2c3d49;
+    border-radius: 50%;
+    box-shadow: inset 0 0 5px 5px #141414, 0 0 5px 5px rgba(0,0,0,.3);
+}
+
+.avatar__summary__stats {
+    display: flex;
+    flex-direction: column;
+}
+
+.avatar__summary__header {
+    font-family: cinzel;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #e1bb34;
+    text-transform: uppercase;
+    margin-top: 20px;
+}
+
+.avatar__last__update__header {
+    margin-top: 5px;
+    color: white;
+    float: right;
+}
+
+.fade-out {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.fade-out.hide {
+  opacity: 0;
+}

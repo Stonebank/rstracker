@@ -1,1 +1,65 @@
-﻿
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/css/index.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="center">
+        <div class="container">
+            <div class="search__header">
+                <h1>start tracking</h1>
+            </div>
+            <div class="search__subheader">
+                <p>Choose your game: RS3 or OSRS (COMING SOON), enter your username and embark on your player tracking journey! You'll be able to check out your stats, levels gained and notable milestones.</p>
+            </div>
+            <div class="searchbar__main">
+                <div class="searchbar__container">
+                    <div class="searchbar">
+                        <div class="searchbar__text">
+                            <input type="text" placeholder="Search for a player..." />
+                        </div>
+                        <div class="searchbar__button">
+                            <button type="button" class="search_button" id="search_button"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+
+    $(document).ready(function () {
+
+        document.querySelector(".searchbar__button").addEventListener("click", function () {
+
+            var input = document.querySelector(".searchbar__text input").value;
+
+            $.ajax({
+                type: 'POST',
+                url: '/rs3lookup/profile/',
+                data: { username: input },
+                success: function (response) {
+                    $('body').html(response);
+                    history.pushState(null, null, "/rs3lookup/profile?username=" + input);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+
+        });
+
+    });
+
+</script>
+
+</html>
