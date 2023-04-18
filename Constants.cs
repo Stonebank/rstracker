@@ -13,9 +13,9 @@ namespace rstracker
          * 
          */
 
-        public static string DATA_PATH = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "rsxptracker\\");
+        public static readonly string DATA_PATH = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "rstracker\\");
 
-        public static List<Player> PLAYERS = new List<Player>();
+        public static readonly List<Player> PLAYERS = new List<Player>();
 
         /* 
          * GLOBAL_TRACKING_DELAY will store the time in milliseconds that a player can be tracked.
@@ -23,7 +23,7 @@ namespace rstracker
          * The current delay is 60 seconds. This is to prevent the backend from being overloaded with requests.
          */
 
-        public static long GLOBAL_TRACKING_DELAY = 60 * 1000;
+        public static readonly long GLOBAL_TRACKING_DELAY = 60 * 1000;
 
     }
 }
