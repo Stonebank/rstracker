@@ -50,11 +50,11 @@
 
             $.ajax({
                 type: 'POST',
-                url: '/rs3lookup/profile/',
+                url: '/highscore/rs3/',
                 data: { username: input },
                 success: function (response) {
                     $('body').html(response);
-                    history.pushState(null, null, "/rs3lookup/profile?username=" + input);
+                    history.pushState(null, null, "/highscore/rs3/profile?username=" + input);
                 },
                 error: function (response) {
                     alert(response.responseText);
