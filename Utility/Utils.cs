@@ -29,5 +29,16 @@ namespace rstracker.Utility
             Debug.WriteLine($"[{DateTime.Now}]: {input}");
         }
 
+        public static string GetErrorMessage(int statusCode)
+        {
+            return statusCode switch
+            {
+                404 => "The page you requested could not be found.",
+                500 => "An error occured while processing your request.",
+                503 => "Service unavailable at the moment. We're working on it!",
+                _ => "An error has occurred."
+            };
+        }
+
     }
 }

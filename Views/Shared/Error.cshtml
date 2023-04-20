@@ -1,25 +1,136 @@
-﻿@model ErrorViewModel
+﻿@model rstracker.Models.ErrorModel
+
 @{
-    ViewData["Title"] = "Error";
+    ViewData["Title"] = "Nothing interesting happens...";
 }
 
-<h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">An error occurred while processing your request.</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/css/error.css" />
+</head>
+<body>
+    <div class="center">
+        <div class="container">
+            <div class="error_image__container">
+                <img src="~/img/confused_man.gif" />
+            </div>
+            <div class="error_message__container">
+                <div class="error__message__header">Nothing interesting happens...</div>
+                <h1 class="error__message__reason">@Model.StatusCode: @Model.ErrorMessage</h1>
+                <p class="error__message__subheader">Encountered a problem? Don't worry, we're here to help. Please let us know what happened so we can investigate. You can safely return to the frontpage while we take a closer look.</p>
+                <div class="error__message__button__container" style="gap: 20px;">
+                    <button type="button" class="error__message__button" onclick="openModal()">contact us</button>
+                    <button type="button" class="error__message__button" onclick="redirectToHome()">back to homepage</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-@if (Model.ShowRequestId)
-{
-    <p>
-        <strong>Request ID:</strong> <code>@Model.RequestId</code>
-    </p>
-}
+    <div class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center hidden" id="contactModal">
+        <div class="modal-overlay absolute w-full h-full bg-black opacity-50"></div>
+        <div class="modal-container bg-green-200 w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
+            <div class="modal-content bg-[url(../img/website/profile_background.png)] py-4 text-left px-6">
+                <div class="flex justify-between items-center pb-3">
+                    <p class="text-2xl font-bold text-[#E1BB34]">Report an issue</p>
+                    <div class="modal-close cursor-pointer z-50" onclick="closeModal()">
+                        <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                            <path d="M18 1.8L16.2 0 9 7.2 1.8 0 0 1.8l7.2 7.2L0 16.2 1.8 18l7.2-7.2 7.2 7.2 1.8-1.8-7.2-7.2z" />
+                        </svg>
+                    </div>
+                </div>
+                <form>
+                    <div class="mb-4">
+                        <label class="block text-[#E1BB34] font-bold mb-2" for="name">
+                            Name
+                        </label>
+                        <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Enter your name" required>
+                    </div>
 
-<h3>Development Mode</h3>
-<p>
-    Swapping to <strong>Development</strong> environment will display more detailed information about the error that occurred.
-</p>
-<p>
-    <strong>The Development environment shouldn't be enabled for deployed applications.</strong>
-    It can result in displaying sensitive information from exceptions to end users.
-    For local debugging, enable the <strong>Development</strong> environment by setting the <strong>ASPNETCORE_ENVIRONMENT</strong> environment variable to <strong>Development</strong>
-    and restarting the app.
-</p>
+                    <div class="mb-4">
+                        <label class="block text-[#E1BB34] font-bold mb-2" for="email">
+                            E-mail
+                        </label>
+                        <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Enter your email" required>
+                        <p class="mt-1 text-white text-xs italic">We'll never share your email with anyone else. It is just to stay in touch, incase we need more information.</p>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-[#E1BB34] font-bold mb-2" for="comments">
+                            Additional comments
+                        </label>
+                        <textarea class="no-resize appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="comments" rows="5" placeholder="Enter your message"></textarea>
+                    </div>
+
+                    <div class="flex justify-end pt-2">
+                        <button type="button" class="error__message__button" style="width: 180px;" onclick="reportError()">Submit report</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        function redirectToHome() {
+            window.location.href = "/";
+        }
+
+        function openModal() {
+            document.getElementById('contactModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('contactModal').classList.add('hidden');
+        }
+
+        function reportError() {
+
+            var name = $('#name').val();
+            var email = $('#email').val();
+
+            if (name.trim().length == 0 || email.trim().length == 0) {
+                alert("Please fill in your name and email address.")
+                return;
+            }
+
+            var comments = $('#comments').val();
+
+            var errorUrl = window.location.href;
+
+            var model = {
+                OSName: '@Model.OSName',
+                ProcessorCount: '@Model.ProcessorCount',
+                Memory: '@Model.Memory',
+                Name: name,
+                Email: email,
+                Comments: comments,
+                ErrorMessage: '@Model.ErrorMessage',
+                StatusCode: '@Model.StatusCode',
+                RemoteAddress: '@Model.RemoteAddress',
+                ErrorUrl: errorUrl
+            };
+
+            $.ajax({
+                type: 'POST',
+                url: '/exception/LogError/',
+                data: JSON.stringify(model),
+                contentType: 'application/json',
+                success: function (response) {
+                    alert(response)
+                    redirectToHome();
+                },
+                error: function (response) {
+                    alert(response);
+                    redirectToHome();
+                }
+            });
+
+        }
+
+    </script>
+</body>
+</html>
