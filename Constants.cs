@@ -15,6 +15,8 @@ namespace rstracker
 
         public static readonly string DATA_PATH = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "rstracker\\");
 
+        public static readonly string ERROR_LOG_PATH = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "rstracker\\errorlogs\\");
+
         public static readonly List<Player> PLAYERS = new List<Player>();
 
         /* 
