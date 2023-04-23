@@ -93,3 +93,12 @@ body {
 .fade-out.hide {
     opacity: 0;
 }
+
+.avatar__gamemode {
+    all: unset;
+    margin-right: 15px;
+    margin-left: 5px;
+    width: 46px;
+    height: 45px;
+    object-fit: cover;
+}
