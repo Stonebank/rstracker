@@ -29,14 +29,14 @@ namespace rstracker.Controllers
             {
                 player.LastResetDay = DateTime.Today;
                 player.DailyTrackingData.Clear();
-                if (player.GameMode != Enums.GameMode.REGULAR)
+                if (player.GameModeModel.GameMode == Enums.GameMode.HARDCORE_IRONMAN || player.GameModeModel.GameMode == Enums.GameMode.ULTIMATE_IRONMAN)
                     await DetermineGameMode(player).ConfigureAwait(false);
             }
 
             if (!Constants.PLAYERS.Contains(player))
                 Constants.PLAYERS.Add(player);
 
-            if (player.GameMode == Enums.GameMode.NONE)
+            if (player.GameModeModel.GameMode == Enums.GameMode.NONE)
                 await DetermineGameMode(player).ConfigureAwait(false);
 
             player.SearchCount++;
@@ -75,7 +75,7 @@ namespace rstracker.Controllers
             return View("rs3/profile", player);
         }
 
-        private static async Task FetchRS3ClanData(Player player)
+        private static async Task FetchRS3ClanData(PlayerModel player)
         {
             using (var client = new HttpClient())
             {
@@ -84,20 +84,20 @@ namespace rstracker.Controllers
                     return;
 
                 string data = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-                string json = ClanMember.ExtractJsonData(data);
+                string json = ClanMemberModel.ExtractJsonData(data);
 
                 if (string.IsNullOrEmpty(json))
                     return;
 
-                var member = JsonConvert.DeserializeObject<ClanMember>(json);
+                var member = JsonConvert.DeserializeObject<ClanMemberModel>(json);
                 if (member is null)
                     return;
 
-                player.ClanMember = new ClanMember(member.IsSuffix, member.Recruiting, member.Name, member.Clan, member.Title, member.World, member.Online);
+                player.ClanMemberModel = new ClanMemberModel(member.IsSuffix, member.Recruiting, member.Name, member.Clan, member.Title, member.World, member.Online);
             }
         }
 
-        private static async Task DetermineGameMode(Player player)
+        private static async Task DetermineGameMode(PlayerModel player)
         {
             using (var client = new HttpClient())
             {
@@ -123,19 +123,30 @@ namespace rstracker.Controllers
                             var document = await web.LoadFromWebAsync(Constants.GetHardcoreIronmanHighscore(player.Username));
 
                             string xpath = $"//td[a[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '{player.Username.ToLower()}')]]/a/div[@class='death-icon']";
+                            var deathIconNode = document.DocumentNode.SelectSingleNode(xpath);
 
-                            if (document.DocumentNode.SelectSingleNode(xpath) is not null)
+                            if (deathIconNode is not null)
                             {
-                                player.GameMode = Enums.GameMode.IRONMAN;
+
+                                var deathIconDetailsNode = deathIconNode.SelectSingleNode(".//div[@class='death-icon__details']");
+                                var dateNode = deathIconDetailsNode.SelectSingleNode("./p[@class='death-icon__date']").InnerText;
+                                var locationNode = deathIconDetailsNode.SelectSingleNode("./p[@class='death-icon__location']").InnerText;
+                                var descNode = deathIconDetailsNode.SelectSingleNode("./p[@class='death-icon__desc']").InnerText;
+
+                                player.GameModeModel.DeathDate = dateNode;
+                                player.GameModeModel.DeathLocation = locationNode;
+                                player.GameModeModel.DeathReason = descNode;
+
+                                player.GameModeModel.GameMode = Enums.GameMode.IRONMAN;
                                 break;
                             }
                             
                         }
 
-                        player.GameMode = response == tasks[0] ? Enums.GameMode.HARDCORE_IRONMAN : Enums.GameMode.IRONMAN;
+                        player.GameModeModel.GameMode = response == tasks[0] ? Enums.GameMode.HARDCORE_IRONMAN : Enums.GameMode.IRONMAN;
                         break;
                     }
-                    player.GameMode = Enums.GameMode.REGULAR;
+                    player.GameModeModel.GameMode = Enums.GameMode.REGULAR;
                 }
             }
         }
