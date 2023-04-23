@@ -80,10 +80,12 @@ body {
 }
 
 .avatar__last__update__header {
-    margin-top: 5px;
+    display: flex;
+    margin-top: 15px;
     color: white;
-    float: right;
+    justify-content: space-between;
 }
+
 
 .fade-out {
     opacity: 1;
@@ -94,11 +96,51 @@ body {
     opacity: 0;
 }
 
+.avatar__badges {
+    display: flex;
+    background: #071F2A;
+    padding: 10px 32px;
+    gap: 7px;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .avatar__gamemode {
-    all: unset;
-    margin-right: 15px;
-    margin-left: 5px;
-    width: 46px;
-    height: 45px;
-    object-fit: cover;
+    display: flex;
+    width: 18px;
+}
+
+.avatar__last__update__timer {
+    margin-left: auto;
+}
+
+.avatar__death__details {
+    display: flex;
+    width: 21px;
+    height: 20px;
+}
+
+.avatar__death__image {
+    margin-left: 10px;
+}
+
+.death__icon__container {
+    display: none;
+}
+
+.avatar__death__image:hover + .death__icon__container {
+    display: block;
+    background: url(../img/website/profile_background.png) repeat 0 0;
+    padding: 5px 10px;
+    font-size: 1em;
+    position: absolute;
+    border: 1px solid grey;
+    box-shadow: 0 0 3px 3px black;
+    text-transform: uppercase;
+}
+
+.death__icon__title {
+    color: #e1bb34;
+    font-weight: 700;
 }
