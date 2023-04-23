@@ -3,7 +3,7 @@ using rstracker.Utility;
 
 namespace rstracker.Models
 {
-    public class ClanMember
+    public class ClanMemberModel
     {
 
         public bool IsSuffix { get; set; }
@@ -20,7 +20,7 @@ namespace rstracker.Models
 
         public bool Online { get; set; }
 
-        public ClanMember(bool isSuffix, bool recruiting, string name, string clan, string title, string world, bool online)
+        public ClanMemberModel(bool isSuffix, bool recruiting, string name, string clan, string title, string world, bool online)
         {
             IsSuffix = isSuffix;
             Recruiting = recruiting;

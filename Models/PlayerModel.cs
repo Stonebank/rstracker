@@ -4,7 +4,7 @@ using System.Numerics;
 
 namespace rstracker.Models
 {
-    public class Player
+    public class PlayerModel
     {
 
         /* Id will be the unique identifier of the player. This is generated so it is easier to track the player, even if they were to change usernames. */
@@ -29,11 +29,11 @@ namespace rstracker.Models
 
         /* GameMode will store the player's game mode. This is used to display the player's game mode on the frontend. Value is set to none by default. */
 
-        public GameMode GameMode = GameMode.NONE;
+        public GameModeModel GameModeModel { get; set; }
 
         /* Clan will store the player's clan. This is used to display the player's clan on the frontend. */
 
-        public ClanMember? ClanMember { get; set; }
+        public ClanMemberModel? ClanMemberModel { get; set; }
 
         /* SearchCount is a metric that will store the amount of times that the player has been searched for. */
 
@@ -51,7 +51,7 @@ namespace rstracker.Models
 
         public List<string> DailyTrackingData { get; set; }
 
-        public Player(string username)
+        public PlayerModel(string username)
         {
             Username = Utils.Capitalize(username);
             SkillData = new List<string>();
@@ -59,6 +59,7 @@ namespace rstracker.Models
             DailyTrackingData = new List<string>();
             LastUpdate = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() + Constants.GLOBAL_TRACKING_DELAY;
             LastResetDay = DateTime.Today;
+            GameModeModel = new GameModeModel();
         }
 
         /* GetRank returns the Rank of the player */
@@ -123,15 +124,6 @@ namespace rstracker.Models
             if (SearchCount == 1 || DailyTrackingData.Count == 0)
                 return 0;
             return long.Parse(DailyTrackingData[(int)skill]);
-        }
-
-        /* GetGamdeMode will return the string location to the sprite, so that the player's gamemode can be displayed in the frontend */
-
-        public string GetGameMode()
-        {
-            if (GameMode == GameMode.REGULAR)
-                return string.Empty;
-            return (GameMode == GameMode.HARDCORE_IRONMAN ? "HC ironman" : "ironman") + ".png";
         }
 
         /* AppendDailyXp will append any difference in xp and store it to display the daily gained xp */

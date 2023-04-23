@@ -19,7 +19,7 @@ namespace rstracker.Core
             foreach (var file in files)
             {
                 var json = File.ReadAllText(file);
-                var player = JsonConvert.DeserializeObject<Player>(json);
+                var player = JsonConvert.DeserializeObject<PlayerModel>(json);
                 if (player is null)
                     continue;
                 Constants.PLAYERS.Add(player);
@@ -36,13 +36,13 @@ namespace rstracker.Core
                 throw new ArgumentNullException("Player not found.");
 
             var json = File.ReadAllText(dataPath);
-            var player = JsonConvert.DeserializeObject<Player>(json) ?? throw new NullReferenceException("Player not found.");
+            var player = JsonConvert.DeserializeObject<PlayerModel>(json) ?? throw new NullReferenceException("Player not found.");
             Constants.PLAYERS.Add(player);
         }
 
         /* Save creates or updates the player data */
 
-        public static void Save(Player player)
+        public static void Save(PlayerModel player)
         {
             if (player is null)
                 throw new ArgumentNullException("Player could not be saved. Please try again");
@@ -53,12 +53,12 @@ namespace rstracker.Core
 
         /* GetPlayer will return a player in the stored memory or create a new instance of the player model */
 
-        public static Player GetPlayer(string username)
+        public static PlayerModel GetPlayer(string username)
         {
             foreach (var player in Constants.PLAYERS)
                 if (player.Username == Utils.Capitalize(username))
                     return player;
-            return new Player(username);
+            return new PlayerModel(username);
         }
 
     }
