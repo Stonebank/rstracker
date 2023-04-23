@@ -1,5 +1,5 @@
 ﻿@using rstracker.Enums;
-@model rstracker.Models.Player;
+@model rstracker.Models.PlayerModel;
 
 @{
 
@@ -28,16 +28,41 @@
                         <img src="https://secure.runescape.com/m=avatar-rs/{@Model.Username}/chat.png" />
                     </div>
                     <div class="avatar__username">
-                        @if (!string.IsNullOrEmpty(Model.GetGameMode()))
+                        @Model.Username
+                        @if (Model.ClanMemberModel != null)
                         {
-                            <img class="avatar__gamemode" src="~/img/gamemode/@Model.GetGameMode()" />
+                            <span class="avatar__clan__name">@(Model.ClanMemberModel.Clan != null ? $"(member of {Model.ClanMemberModel.Clan})" : "")</span>
                         }
-                        @Model.Username <span class="avatar__clan__name">@(Model.ClanMember.Clan != null ? $"(member of {Model.ClanMember.Clan})" : "")</span></div>
+                    </div>
                     <div class="avatar__rank">Rank @Model.GetRank()</div>
                 </div>
                 <div class="avatar__summary_stats">
                     <div class="avatar__last__update__header">
-                        Next update in @lastUpdateInSeconds seconds
+                        @if (!string.IsNullOrEmpty(Model.GameModeModel.GetGameModeTitle()))
+                        {
+                            <div class="avatar__badges">
+                                <img class="avatar__gamemode" src="~/img/gamemode/@Model.GameModeModel.GetGameMode()" />
+                                <span class="avatar__gamemode__title">@Model.GameModeModel.GetGameModeTitle()</span>
+                                @if (!string.IsNullOrEmpty(Model.GameModeModel.DeathDate))
+                                {
+                                    <div class="avatar__death__details">
+                                        |
+                                        <div class="avatar__death__icon">
+                                            <img class="avatar__death__image" src="~/img/gamemode/death_icon.png" />
+                                            <div class="death__icon__container">
+                                                <div class="death__icon__title">hc status lost</div>
+                                                <div class="death__icon__date">@Model.GameModeModel.DeathDate</div>
+                                                <div class="death__icon__location">@Model.GameModeModel.DeathLocation</div>
+                                                <div class="death__icon__reason">@Model.GameModeModel.DeathReason</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        }
+                        <div class="avatar__last__update__timer">
+                            Next update in @lastUpdateInSeconds seconds
+                        </div>
                     </div>
                     <div class="avatar__summary__header">
                         summary
