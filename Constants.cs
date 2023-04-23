@@ -17,7 +17,7 @@ namespace rstracker
 
         public static readonly string ERROR_LOG_PATH = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "rstracker\\errorlogs\\");
 
-        public static readonly List<Player> PLAYERS = new List<Player>();
+        public static readonly List<PlayerModel> PLAYERS = new List<PlayerModel>();
 
         /* 
          * GLOBAL_TRACKING_DELAY will store the time in milliseconds that a player can be tracked.
