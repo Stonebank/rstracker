@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using HtmlAgilityPack;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using rstracker.Core;
 using rstracker.Models;
@@ -10,7 +11,7 @@ namespace rstracker.Controllers
     public class HighscoreController : Controller
     {
 
-        public IActionResult RS3(string username)
+        public async Task<IActionResult> RS3Async(string username)
         {
 
             if (string.IsNullOrEmpty(username))
@@ -28,10 +29,15 @@ namespace rstracker.Controllers
             {
                 player.LastResetDay = DateTime.Today;
                 player.DailyTrackingData.Clear();
+                if (player.GameMode != Enums.GameMode.REGULAR)
+                    await DetermineGameMode(player).ConfigureAwait(false);
             }
 
             if (!Constants.PLAYERS.Contains(player))
                 Constants.PLAYERS.Add(player);
+
+            if (player.GameMode == Enums.GameMode.NONE)
+                await DetermineGameMode(player).ConfigureAwait(false);
 
             player.SearchCount++;
 
@@ -41,14 +47,13 @@ namespace rstracker.Controllers
             player.LastSkillDataUpdate = new List<string>(player.SkillData);
             player.SkillData.Clear();
 
-   
             using (var client = new HttpClient())
             {
-                HttpResponseMessage response = client.GetAsync(Constants.GetHighscoreEndPoint(username)).GetAwaiter().GetResult();
+                var response = await client.GetAsync(Constants.GetHighscoreEndPoint(username)).ConfigureAwait(false);
                 if (!response.IsSuccessStatusCode && response.StatusCode == HttpStatusCode.NotFound)
                     return BadRequest($"The player \"{username}\" was not found. This could be because their profile is private or the username input is incorrect.");
-                
-                string data = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+
+                string data = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
                 string[] split = data.Split("\n");
                 foreach (var item in split)
@@ -60,7 +65,7 @@ namespace rstracker.Controllers
                 }
             }
 
-            FetchRS3ClanData(player);
+            await FetchRS3ClanData(player).ConfigureAwait(false);
 
             player.AppendDailyXp();
             player.LastUpdate = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() + 60000;
@@ -70,15 +75,15 @@ namespace rstracker.Controllers
             return View("rs3/profile", player);
         }
 
-        private static void FetchRS3ClanData(Player player)
+        private static async Task FetchRS3ClanData(Player player)
         {
             using (var client = new HttpClient())
             {
-                HttpResponseMessage response = client.GetAsync(Constants.GetClanDataEndPoint(player.Username)).GetAwaiter().GetResult();
+                HttpResponseMessage response = await client.GetAsync(Constants.GetClanDataEndPoint(player.Username)).ConfigureAwait(false);
                 if (!response.IsSuccessStatusCode && response.StatusCode == HttpStatusCode.NotFound)
                     return;
 
-                string data = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                string data = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
                 string json = ClanMember.ExtractJsonData(data);
 
                 if (string.IsNullOrEmpty(json))
@@ -88,9 +93,50 @@ namespace rstracker.Controllers
                 if (member is null)
                     return;
 
-                player.ClanMember = new ClanMember(member.IsSuffix, member.Recruiting, member.Name, member.Clan, member
-                    .Title, member.World, member.Online);
+                player.ClanMember = new ClanMember(member.IsSuffix, member.Recruiting, member.Name, member.Clan, member.Title, member.World, member.Online);
+            }
+        }
 
+        private static async Task DetermineGameMode(Player player)
+        {
+            using (var client = new HttpClient())
+            {
+
+                var tasks = new[]
+                {
+                    client.GetAsync(Constants.GetHardcoreIronmanEndPoint(player.Username)),
+                    client.GetAsync(Constants.GetIronmanEndPoint(player.Username))
+                };
+
+                await Task.WhenAll(tasks);
+
+                foreach (var response in tasks)
+                {
+                    if (response.Result.IsSuccessStatusCode && response.Result.StatusCode == HttpStatusCode.OK)
+                    {
+                        response.Result.EnsureSuccessStatusCode();
+
+                        if (response == tasks[0])
+                        {
+
+                            var web = new HtmlWeb();
+                            var document = await web.LoadFromWebAsync(Constants.GetHardcoreIronmanHighscore(player.Username));
+
+                            string xpath = $"//td[a[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '{player.Username.ToLower()}')]]/a/div[@class='death-icon']";
+
+                            if (document.DocumentNode.SelectSingleNode(xpath) is not null)
+                            {
+                                player.GameMode = Enums.GameMode.IRONMAN;
+                                break;
+                            }
+                            
+                        }
+
+                        player.GameMode = response == tasks[0] ? Enums.GameMode.HARDCORE_IRONMAN : Enums.GameMode.IRONMAN;
+                        break;
+                    }
+                    player.GameMode = Enums.GameMode.REGULAR;
+                }
             }
         }
 
