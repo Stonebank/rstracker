@@ -22,7 +22,7 @@ namespace rstracker.Utility
             return string.Join(' ', words);
         }
 
-        public static void PrintLine(string input)
+        public static void PrintLine(object input)
         {
             if (input is null)
                 return;
