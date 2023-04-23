@@ -27,9 +27,13 @@ namespace rstracker.Models
 
         public string Username { get; set; }
 
+        /* GameMode will store the player's game mode. This is used to display the player's game mode on the frontend. Value is set to none by default. */
+
+        public GameMode GameMode = GameMode.NONE;
+
         /* Clan will store the player's clan. This is used to display the player's clan on the frontend. */
 
-        public ClanMember ClanMember { get; set; }
+        public ClanMember? ClanMember { get; set; }
 
         /* SearchCount is a metric that will store the amount of times that the player has been searched for. */
 
@@ -121,6 +125,17 @@ namespace rstracker.Models
             return long.Parse(DailyTrackingData[(int)skill]);
         }
 
+        /* GetGamdeMode will return the string location to the sprite, so that the player's gamemode can be displayed in the frontend */
+
+        public string GetGameMode()
+        {
+            if (GameMode == GameMode.REGULAR)
+                return string.Empty;
+            return (GameMode == GameMode.HARDCORE_IRONMAN ? "HC ironman" : "ironman") + ".png";
+        }
+
+        /* AppendDailyXp will append any difference in xp and store it to display the daily gained xp */
+
         public void AppendDailyXp()
         {
             if (SkillData.Count == 0 || LastSkillDataUpdate.Count == 0)
@@ -143,6 +158,7 @@ namespace rstracker.Models
             }
 
         }
+
 
     }
 }
