@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using rstracker.Core;
 using rstracker.Models;
-using rstracker.Utility;
 using System.Net;
 
 namespace rstracker.Controllers
