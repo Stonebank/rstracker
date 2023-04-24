@@ -129,13 +129,18 @@ namespace rstracker.Controllers
                             {
 
                                 var deathIconDetailsNode = deathIconNode.SelectSingleNode(".//div[@class='death-icon__details']");
-                                var dateNode = deathIconDetailsNode.SelectSingleNode("./p[@class='death-icon__date']").InnerText;
-                                var locationNode = deathIconDetailsNode.SelectSingleNode("./p[@class='death-icon__location']").InnerText;
-                                var descNode = deathIconDetailsNode.SelectSingleNode("./p[@class='death-icon__desc']").InnerText;
 
-                                player.GameModeModel.DeathDate = dateNode;
-                                player.GameModeModel.DeathLocation = locationNode;
-                                player.GameModeModel.DeathReason = descNode;
+                                var dateNode = deathIconDetailsNode.SelectSingleNode("./p[@class='death-icon__date']");
+                                if (dateNode is not null)
+                                    player.GameModeModel.DeathDate = dateNode.InnerText;
+
+                                var locationNode = deathIconDetailsNode.SelectSingleNode("./p[@class='death-icon__location']");
+                                if (locationNode is not null)
+                                    player.GameModeModel.DeathLocation = locationNode.InnerText;
+
+                                var descNode = deathIconDetailsNode.SelectSingleNode("./p[@class='death-icon__desc']");
+                                if (descNode is not null)
+                                    player.GameModeModel.DeathReason = descNode.InnerText;
 
                                 player.GameModeModel.GameMode = Enums.GameMode.IRONMAN;
                                 break;
