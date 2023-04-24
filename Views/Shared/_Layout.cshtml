@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var cookieConsent = Context.Request.Cookies["cookie_consent"];
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -35,7 +39,18 @@
                 <a href="#" class="text-sm font-semibold leading-6 text-white">Feedback</a>
             </div>
         </nav>
-
+        @if (cookieConsent == null)
+        {
+            <div id="cookie-card" class="cookie-card">
+                <span class="title">🍪 Cookie Notice</span>
+                <p class="description">We use cookies to ensure that we give you the best experience on our website.</p>
+                <div class="actions">
+                    <button class="accept" onclick="giveCookieConsent()">
+                        Accept
+                    </button>
+                </div>
+            </div>
+        }
         <div class="lg:hidden" role="dialog" aria-modal="true">
             <div class="fixed inset-0 z-10"></div>
             <div class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-gray-900 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-white/10">
@@ -89,6 +104,17 @@
             $("#overlay").hide();
             $("#loadingSpinner").hide();
         });
+
+        function giveCookieConsent() {
+            $.ajax({
+                type: "POST",
+                url: "/home/SetCookieConsent",
+                success: function () {
+                    console.log("consent given");
+                    $("#cookie-card").hide();
+                }
+            });
+        }
 
     </script>
     @await RenderSectionAsync("Scripts", required: false)
