@@ -108,10 +108,10 @@
         function giveCookieConsent() {
             $.ajax({
                 type: "POST",
-                url: "/home/SetCookieConsent",
+                url: "/Cookie/SetCookieConsent",
                 success: function () {
                     console.log("consent given");
-                    $("#cookie-card").hide();
+                    $("#cookie-card").fadeOut();
                 }
             });
         }
