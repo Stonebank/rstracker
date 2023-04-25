@@ -17,11 +17,4 @@ public class HomeController : Controller
         return View();
     }
 
-    [HttpPost]
-    public IActionResult SetCookieConsent()
-    {
-        CookieHandler.SetCookie(Response, Enums.CookieKeys.COOKIE_CONSENT, "true");
-        return Ok();
-    }
-
 }
