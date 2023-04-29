@@ -67,7 +67,7 @@ namespace rstracker.Controllers
             await FetchRS3ClanData(player).ConfigureAwait(false);
 
             player.AppendDailyXp();
-            player.LastUpdate = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() + 60000;
+            player.LastUpdate = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() + Constants.GLOBAL_TRACKING_DELAY;
 
             DataHandler.Save(player);
 
